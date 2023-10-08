@@ -3,7 +3,7 @@ management.endpoints.web.exposure.include: "*"
 
 logging:
   level:
-    com.fastcampus.projectboard: debug
+    com.example.projectboard: debug
     org.springframework.web.servlet: debug
     org.hibernate.type.descriptor.sql.BasicBinder: trace
 
@@ -20,14 +20,15 @@ spring:
     properties:
       hibernate.format_sql: true
       hibernate.default_batch_fetch_size: 100
+  h2.console.enabled: true
   sql.init.mode: always
 
 ---
 
 spring:
   config.activate.on-profile: testdb
-  datasource:
-    url: jdbc:h2:mem:board;mode=mysql
-    driver-class-name: com.mysql.cj.jdbc.Driver
-  sql.init.mode: always
-  test.database.replace: none
+#  datasource:
+#    url: jdbc:h2:mem:board;mode=mysql
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#  sql.init.mode: always
+#  test.database.replace: none

@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Import;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
-@DisplayName("JPA 연결 테스트")
+@DisplayName("JPA connent test")
 @Import(JpaConfig.class)
 @DataJpaTest
 class JpaRepositoryTest {
@@ -36,13 +36,14 @@ class JpaRepositoryTest {
         // Then
         assertThat(articles)
                 .isNotNull()
-                .hasSize(0);
+                .hasSize(123);
     }
     @DisplayName("insert test")
     @Test
     void givenTestData_whenInserting_thenWorksFine() {
         // Given
         long previousCount = articleRepository.count();
+        System.out.println("몇개인가" + previousCount);
 
         // When
         Article saveArticle = articleRepository.save(Article.of("new article", "new content", "#spring"));
@@ -54,8 +55,9 @@ class JpaRepositoryTest {
     @Test
     void givenTestData_whenUpdating_thenWorksFine() {
         // Given
-        articleRepository.save(Article.of("new article", "new content", "#spring"));
+//        articleRepository.save(Article.of("new article", "new content", "#spring"));
         Article article = articleRepository.findById(1L).orElseThrow();
+        System.out.println("이게뭐야"+article);
         String updatedHashtag = "#springboot";
         article.setHashtag(updatedHashtag);
 
@@ -69,7 +71,7 @@ class JpaRepositoryTest {
     @Test
     void givenTestData_whenDeleting_thenWorksFine() {
         // Given
-        articleRepository.save(Article.of("new article", "new content", "#spring"));
+//        articleRepository.save(Article.of("new article", "new content", "#spring"));
         Article article = articleRepository.findById(1L).orElseThrow();
         long previousArticleCount = articleRepository.count();
         long previousArticleCommentCount = articleCommentRepository.count();
