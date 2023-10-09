@@ -2,6 +2,8 @@ package com.example.projectboard.domain.repository;
 
 import com.example.projectboard.config.JpaConfig;
 import com.example.projectboard.domain.Article;
+import com.example.projectboard.repository.ArticleCommentRepository;
+import com.example.projectboard.repository.ArticleRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,7 +45,7 @@ class JpaRepositoryTest {
     void givenTestData_whenInserting_thenWorksFine() {
         // Given
         long previousCount = articleRepository.count();
-        System.out.println("몇개인가" + previousCount);
+        System.out.println("몇개인가" + previousCount + "개" );
 
         // When
         Article saveArticle = articleRepository.save(Article.of("new article", "new content", "#spring"));
@@ -57,7 +59,7 @@ class JpaRepositoryTest {
         // Given
 //        articleRepository.save(Article.of("new article", "new content", "#spring"));
         Article article = articleRepository.findById(1L).orElseThrow();
-        System.out.println("이게뭐야"+article);
+        System.out.println("ID 1번 정보" + article);
         String updatedHashtag = "#springboot";
         article.setHashtag(updatedHashtag);
 
